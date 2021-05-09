@@ -7,9 +7,10 @@ const cors =require('cors')
 const phonesRoute = require('./routes/phonesRoute')
 const usersRoute = require("./routes/usersRoute")
 
-dotenv.config()
+
 
 const app = express()
+dotenv.config()
 
 //connection
 connectDB();
