@@ -1,9 +1,13 @@
 const User = require("../models/userSchema")
 const bcrypt =require("bcryptjs")
+const {validateSignIn,validateSignUp, validateUserSignUp}= require("../utils/userValidation")
 const genToken=require("../utils/genToken")
 
 //sign up new user
 const signUp=async(req,res)=>{
+const {error} = validateUserSignUp.validate(req.body);
+if(error) return res.send(error.details[0].messages)
+
     const salt = await bcrypt.genSalt(10)
     const hashedPass = await bcrypt.hash(req.body.password, salt)
 
@@ -20,6 +24,8 @@ const signUp=async(req,res)=>{
 }
 const signIn=async(req,res)=>{
     //validate user
+    const {error} = validateUserSignIn.validate(req.body);
+if(error) return res.send(error.details[0].messages)
 
     //user email verification
     const user = await User.findOne({email:req.body.email});
