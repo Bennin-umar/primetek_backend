@@ -2,7 +2,7 @@ const express = require("express")
 const dotenv = require("dotenv")
 const morgan = require("morgan")
 const connectDB = require("./config/connectDB")
-const cors =require('cors')
+const cors =require("cors")
 
 const phonesRoute = require('./routes/phonesRoute')
 const usersRoute = require("./routes/usersRoute")
